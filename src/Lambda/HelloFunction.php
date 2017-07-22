@@ -2,12 +2,12 @@
 
 namespace App\Lambda;
 
-class HelloHandler implements Handler
+class HelloFunction implements FunctionInterface
 {
     /**
      * {@inheritdoc}
      */
-    public function handle(array $event, Context $context)
+    public function __invoke(array $event, Context $context)
     {
         $logger = $context->getLogger();
         $logger->notice('Got event', $event);

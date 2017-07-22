@@ -2,7 +2,7 @@
 
 namespace App\Lambda;
 
-interface Handler
+interface FunctionInterface
 {
     /**
      * Handle the Lambda event.
@@ -12,5 +12,5 @@ interface Handler
      *
      * @return mixed Response for the lambda. Must be json encodeable.
      */
-    public function handle(array $event, Context $context);
+    public function __invoke(array $event, Context $context);
 }
