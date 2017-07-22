@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Lambda;
 
 use Psr\Log\LoggerInterface;
 

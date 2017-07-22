@@ -12,7 +12,7 @@ services:
 
 # Define your own handlers and other services here
   handler.hello:
-    class: App\HelloHandler
+    class: App\Lambda\HelloHandler
 
 #  handler.example:
 #    class: Acme\ExampleHandler
