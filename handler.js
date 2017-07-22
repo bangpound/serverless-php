@@ -1,19 +1,18 @@
+// jshint node: true, esversion: 6
+
 'use strict';
 
-var child_process = require('child_process');
+const child_process = require('child_process');
 
 module.exports.handle = (event, context, callback) => {
 
-  var response = '';
-  var php = './php';
+  let response = '';
 
   // When using 'serverless invoke local' use the system PHP binary instead
-  if (typeof process.env.PWD !== "undefined") {
-    php = 'php';
-  }
+  const php = typeof process.env.PWD !== "undefined" ? 'php' : './php';
 
   // Build the context object data
-  var contextData = {};
+  const contextData = {};
   Object.keys(context).forEach(function(key) {
     if (typeof context[key] !== 'function') {
       contextData[key] = context[key];
@@ -21,19 +20,19 @@ module.exports.handle = (event, context, callback) => {
   });
 
   // Launch PHP
-  var args = ['handler.php', JSON.stringify(event), JSON.stringify(contextData)];
-  var options = {'stdio': ['pipe', 'pipe', 'pipe', 'pipe']};
-  var proc = child_process.spawn(php, args, options);
+  const args = ['handler.php', JSON.stringify(event), JSON.stringify(contextData)];
+  const options = {'stdio': ['pipe', 'pipe', 'pipe', 'pipe']};
+  const proc = child_process.spawn(php, args, options);
 
   // Request for remaining time from context
   proc.stdio[3].on('data', function (data) {
-    var remaining = context.getRemainingTimeInMillis();
+    const remaining = context.getRemainingTimeInMillis();
     proc.stdio[3].write(`${remaining}\n`);
   });
 
   // Output
   proc.stdout.on('data', function (data) {
-    response += data.toString()
+    response += data.toString();
   });
 
   // Logging
