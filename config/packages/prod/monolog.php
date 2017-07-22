@@ -13,7 +13,7 @@ $handlers = [
         'type' => 'stream',
         'path' => 'php://stderr',
         'level' => 'debug',
-        'formatter' => 'logging.formatter',
+        'formatter' => 'app.monolog.formatter.line',
     ],
 ];
 

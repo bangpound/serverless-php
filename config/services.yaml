@@ -4,9 +4,8 @@ parameters:
 #  logging_level: !php/const:Monolog\Logger::INFO
 
 services:
-  logging.formatter:
-    class: Monolog\Formatter\LineFormatter
-    public: false
+  app.monolog.formatter.line:
+    parent: monolog.formatter.line
     arguments:
       - '%%message%% %%context%% %%extra%%'
 
