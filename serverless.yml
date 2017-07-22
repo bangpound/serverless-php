@@ -13,6 +13,10 @@
 
 service: php-hello-world # NOTE: update this with your service name
 
+plugins:
+  - composer-plugin
+  - symfony-plugin
+
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
@@ -57,19 +61,24 @@ package:
   exclude:
     - '*'
     - '**'
+    - var/cache/dev/**
+    - var/logs
+    - var/**
   include:
     - config/**
     - handler.js
     - handler.php
     - php
+    - bin/**
     - src/**
+    - var/**
     - vendor/**
 
 functions:
   hello:
     handler: handler.handle
     environment:
-      HANDLER: handler.hello  # This is the service name which will be used (from services.yml)
+      HANDLER: handler.hello  # This is the service name which will be used (from services.yaml)
     events:
       - http:
           path: hello

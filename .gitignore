@@ -11,3 +11,9 @@ node_modules/
 # Editors / OS
 *.swp
 .DS_Store
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###

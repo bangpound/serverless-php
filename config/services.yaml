@@ -1,0 +1,18 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+#  logging_level: !php/const:Monolog\Logger::INFO
+
+services:
+  logging.formatter:
+    class: Monolog\Formatter\LineFormatter
+    public: false
+    arguments:
+      - '%%message%% %%context%% %%extra%%'
+
+# Define your own handlers and other services here
+  handler.hello:
+    class: App\HelloHandler
+
+#  handler.example:
+#    class: Acme\ExampleHandler

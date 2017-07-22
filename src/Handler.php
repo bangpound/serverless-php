@@ -1,6 +1,6 @@
 <?php
 
-namespace Raines\Serverless;
+namespace App;
 
 interface Handler
 {

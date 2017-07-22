@@ -2,15 +2,12 @@
 
 $loader = require __DIR__ . '/vendor/autoload.php';
 
-use Raines\Serverless\Context;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use App\Context;
 
 // Set up service container
-$container = new ContainerBuilder();
-$loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/config'));
-$loader->load('services.yml');
+$kernel = new \App\Kernel('prod', false);
+$kernel->boot();
+$container = $kernel->getContainer();
 
 // Get event data and context object
 $event = json_decode($argv[1], true) ?: [];
@@ -23,4 +20,4 @@ $handler = $container->get(getenv('HANDLER'));
 $response = $handler->handle($event, $context);
 
 // Send data back to shim
-printf(json_encode($response));
+exit(json_encode($response));
