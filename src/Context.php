@@ -32,7 +32,7 @@ class Context
     private $contextData;
 
     /**
-     * @var 
+     * @var resource
      */
     private $fd;
 
@@ -77,7 +77,7 @@ class Context
     /**
      * Returns the Lambda logger associated with the Context object.
      *
-     * @return LoggerInteface
+     * @return LoggerInterface
      */
     public function getLogger() : LoggerInterface
     {
